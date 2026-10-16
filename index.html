@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Password Generator &amp; Reverse</title>
+  <!-- Ikon kosong: mencegah browser meminta favicon.ico (tidak ada request jaringan) -->
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+
+    <noscript>
+      <p class="note">Halaman ini membutuhkan JavaScript. Aktifkan JavaScript di browser Anda.</p>
+    </noscript>
+
+    <!-- ===================== LAYAR 1 - MENU ===================== -->
+    <section id="view-menu" aria-labelledby="menu-title">
+      <h1 id="menu-title" tabindex="-1">Password Generator &amp; Reverse</h1>
+      <p class="subtitle">Pilih salah satu:</p>
+      <div class="menu-buttons">
+        <button type="button" id="btn-go-generate" class="btn">Generate Password</button>
+        <button type="button" id="btn-go-reverse" class="btn">Reverse Password</button>
+      </div>
+    </section>
+
+    <!-- ===================== LAYAR 2 - GENERATE PASSWORD ===================== -->
+    <section id="view-generate" aria-labelledby="gen-title" hidden>
+      <button type="button" id="btn-back-gen" class="back">&lt; Kembali</button>
+      <h1 id="gen-title" tabindex="-1">Generate Password</h1>
+
+      <div class="field">
+        <label class="label" for="gen-a">Teks / String (A)</label>
+        <input type="text" id="gen-a" class="input" placeholder="Contoh: rahasia-saya"
+               autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
+               enterkeyhint="go" aria-describedby="gen-bytes">
+        <div id="gen-bytes" class="hint">0 byte</div>
+      </div>
+
+      <div class="field">
+        <div class="label-row">
+          <label class="label" for="gen-b">Panjang password (B)</label>
+          <span id="gen-min" class="hint">Minimal: -</span>
+        </div>
+        <input type="text" id="gen-b" class="input" inputmode="numeric"
+               autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
+               enterkeyhint="go" aria-describedby="gen-min">
+      </div>
+
+      <div class="field">
+        <label class="label" for="gen-c">Seed (C)</label>
+        <input type="text" id="gen-c" class="input" inputmode="numeric" placeholder="Contoh: 987654321"
+               autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
+               enterkeyhint="go">
+      </div>
+
+      <fieldset id="gen-charset" class="field">
+        <legend class="label">Karakter yang dipakai (X)</legend>
+        <div class="check-row">
+          <label class="check"><input type="checkbox" name="charset" value="lower" checked autocomplete="off"> a-z</label>
+          <label class="check"><input type="checkbox" name="charset" value="upper" checked autocomplete="off"> A-Z</label>
+          <label class="check"><input type="checkbox" name="charset" value="digit" checked autocomplete="off"> 0-9</label>
+        </div>
+        <div class="check-row">
+          <label class="check"><input type="checkbox" name="charset" value="sym1" autocomplete="off"> Simbol umum</label>
+          <label class="check"><input type="checkbox" name="charset" value="sym2" autocomplete="off"> Simbol lainnya</label>
+        </div>
+        <label class="label sub" for="gen-custom">Karakter custom (opsional)</label>
+        <input type="text" id="gen-custom" class="input" placeholder="aAbBcCdD123@#"
+               autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
+               enterkeyhint="go" aria-describedby="gen-custom-help gen-count">
+        <div id="gen-custom-help" class="hint">Custom ditambahkan ke centang di atas. Untuk memakai custom saja, hilangkan semua centang.</div>
+        <div id="gen-count" class="hint">Total karakter unik: 62</div>
+      </fieldset>
+
+      <button type="button" id="btn-generate" class="btn action">Generate</button>
+      <div id="gen-error" class="error" role="alert"></div>
+
+      <div id="gen-result" class="result" role="group" aria-labelledby="gen-result-label" hidden>
+        <div id="gen-result-label" class="label">Password (D)</div>
+        <div id="gen-output" class="result-box"></div>
+        <button type="button" id="btn-copy-gen" class="btn" aria-live="polite">Copy</button>
+        <div id="gen-copy-msg" class="error" role="alert"></div>
+      </div>
+    </section>
+
+    <!-- ===================== LAYAR 3 - REVERSE PASSWORD ===================== -->
+    <section id="view-reverse" aria-labelledby="rev-title" hidden>
+      <button type="button" id="btn-back-rev" class="back">&lt; Kembali</button>
+      <h1 id="rev-title" tabindex="-1">Reverse Password</h1>
+      <p class="note">Panjang, seed, dan karakter harus sama persis dengan saat Generate.</p>
+
+      <div class="field">
+        <label class="label" for="rev-d">Password (D)</label>
+        <input type="text" id="rev-d" class="input"
+               autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
+               enterkeyhint="go">
+      </div>
+
+      <div class="field">
+        <label class="label" for="rev-b">Panjang password (B)</label>
+        <input type="text" id="rev-b" class="input" inputmode="numeric"
+               autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
+               enterkeyhint="go">
+      </div>
+
+      <div class="field">
+        <label class="label" for="rev-c">Seed (C)</label>
+        <input type="text" id="rev-c" class="input" inputmode="numeric" placeholder="Contoh: 987654321"
+               autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
+               enterkeyhint="go">
+      </div>
+
+      <fieldset id="rev-charset" class="field">
+        <legend class="label">Karakter yang dipakai (X)</legend>
+        <div class="check-row">
+          <label class="check"><input type="checkbox" name="charset" value="lower" checked autocomplete="off"> a-z</label>
+          <label class="check"><input type="checkbox" name="charset" value="upper" checked autocomplete="off"> A-Z</label>
+          <label class="check"><input type="checkbox" name="charset" value="digit" checked autocomplete="off"> 0-9</label>
+        </div>
+        <div class="check-row">
+          <label class="check"><input type="checkbox" name="charset" value="sym1" autocomplete="off"> Simbol umum</label>
+          <label class="check"><input type="checkbox" name="charset" value="sym2" autocomplete="off"> Simbol lainnya</label>
+        </div>
+        <label class="label sub" for="rev-custom">Karakter custom (opsional)</label>
+        <input type="text" id="rev-custom" class="input" placeholder="aAbBcCdD123@#"
+               autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
+               enterkeyhint="go" aria-describedby="rev-custom-help rev-count">
+        <div id="rev-custom-help" class="hint">Custom ditambahkan ke centang di atas. Untuk memakai custom saja, hilangkan semua centang.</div>
+        <div id="rev-count" class="hint">Total karakter unik: 62</div>
+      </fieldset>
+
+      <button type="button" id="btn-reverse" class="btn action">Reverse</button>
+      <div id="rev-error" class="error" role="alert"></div>
+
+      <div id="rev-result" class="result" role="group" aria-labelledby="rev-result-label" hidden>
+        <div id="rev-result-label" class="label">Teks asli (A)</div>
+        <div id="rev-output" class="result-box"></div>
+        <button type="button" id="btn-copy-rev" class="btn" aria-live="polite">Copy</button>
+        <div id="rev-copy-msg" class="error" role="alert"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
