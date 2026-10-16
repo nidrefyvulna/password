@@ -31,7 +31,7 @@
       <h1 id="gen-title" tabindex="-1">Generate Password</h1>
 
       <div class="field">
-        <label class="label" for="gen-a">Teks / String (A)</label>
+        <label class="label" for="gen-a">Teks / String (ASCII)</label>
         <input type="text" id="gen-a" class="input" placeholder="Contoh: rahasia-saya"
                autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
                enterkeyhint="go" aria-describedby="gen-bytes">
@@ -40,7 +40,7 @@
 
       <div class="field">
         <div class="label-row">
-          <label class="label" for="gen-b">Panjang password (B)</label>
+          <label class="label" for="gen-b">Panjang password</label>
           <span id="gen-min" class="hint">Minimal: -</span>
         </div>
         <input type="text" id="gen-b" class="input" inputmode="numeric"
@@ -49,14 +49,14 @@
       </div>
 
       <div class="field">
-        <label class="label" for="gen-c">Seed (C)</label>
+        <label class="label" for="gen-c">Seed</label>
         <input type="text" id="gen-c" class="input" inputmode="numeric" placeholder="Contoh: 987654321"
                autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
                enterkeyhint="go">
       </div>
 
       <fieldset id="gen-charset" class="field">
-        <legend class="label">Karakter yang dipakai (X)</legend>
+        <legend class="label">Karakter yang dipakai</legend>
         <div class="check-row">
           <label class="check"><input type="checkbox" name="charset" value="lower" checked autocomplete="off"> a-z</label>
           <label class="check"><input type="checkbox" name="charset" value="upper" checked autocomplete="off"> A-Z</label>
@@ -78,7 +78,7 @@
       <div id="gen-error" class="error" role="alert"></div>
 
       <div id="gen-result" class="result" role="group" aria-labelledby="gen-result-label" hidden>
-        <div id="gen-result-label" class="label">Password (D)</div>
+        <div id="gen-result-label" class="label">Password</div>
         <div id="gen-output" class="result-box"></div>
         <button type="button" id="btn-copy-gen" class="btn" aria-live="polite">Copy</button>
         <div id="gen-copy-msg" class="error" role="alert"></div>
@@ -92,28 +92,28 @@
       <p class="note">Panjang, seed, dan karakter harus sama persis dengan saat Generate.</p>
 
       <div class="field">
-        <label class="label" for="rev-d">Password (D)</label>
+        <label class="label" for="rev-d">Password</label>
         <input type="text" id="rev-d" class="input"
                autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
                enterkeyhint="go">
       </div>
 
       <div class="field">
-        <label class="label" for="rev-b">Panjang password (B)</label>
+        <label class="label" for="rev-b">Panjang password</label>
         <input type="text" id="rev-b" class="input" inputmode="numeric"
                autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
                enterkeyhint="go">
       </div>
 
       <div class="field">
-        <label class="label" for="rev-c">Seed (C)</label>
+        <label class="label" for="rev-c">Seed</label>
         <input type="text" id="rev-c" class="input" inputmode="numeric" placeholder="Contoh: 987654321"
                autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"
                enterkeyhint="go">
       </div>
 
       <fieldset id="rev-charset" class="field">
-        <legend class="label">Karakter yang dipakai (X)</legend>
+        <legend class="label">Karakter yang dipakai</legend>
         <div class="check-row">
           <label class="check"><input type="checkbox" name="charset" value="lower" checked autocomplete="off"> a-z</label>
           <label class="check"><input type="checkbox" name="charset" value="upper" checked autocomplete="off"> A-Z</label>
@@ -135,7 +135,7 @@
       <div id="rev-error" class="error" role="alert"></div>
 
       <div id="rev-result" class="result" role="group" aria-labelledby="rev-result-label" hidden>
-        <div id="rev-result-label" class="label">Teks asli (A)</div>
+        <div id="rev-result-label" class="label">Teks asli</div>
         <div id="rev-output" class="result-box"></div>
         <button type="button" id="btn-copy-rev" class="btn" aria-live="polite">Copy</button>
         <div id="rev-copy-msg" class="error" role="alert"></div>
